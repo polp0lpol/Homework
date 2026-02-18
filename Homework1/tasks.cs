@@ -75,6 +75,12 @@ namespace Homework1
             return y;
         }
 
+        /// <summary>
+        /// Функция, которая вычисляет произведение чисел от A до B
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
         static double MultAB(int A, int B)
         {
             if (A > B)
