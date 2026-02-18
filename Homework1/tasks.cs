@@ -28,6 +28,23 @@ namespace Homework1
             }
             number = res;
         }
+        /// <summary>
+        /// Функция, которая определяет цвет точки по ее координатам.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        static string Chess(int x, int y)
+        {
+            if ((x <= 0) || (x >= 9) || (y <= 0) || (y >= 9))
+                throw new ArgumentException("Координаты введены неверно!");
+            if ((x + y) % 2 == 0)
+                return "Черного";
+            return "Белого";
+
+        }
+
 
 
         static void Main()
@@ -45,6 +62,20 @@ namespace Homework1
                 WriteLine(ex.Message);
             }
             WriteLine();
+
+            Write("Введите координату x(1-8): ");
+            var x = int.Parse(ReadLine());
+            Write("Введите координату y(1-8): ");
+            var y = int.Parse(ReadLine());
+            try
+            {
+                WriteLine($"Поле с координатами ({x}, {y}) {Chess(x, y)} цвета");
+            }
+
+            catch (ArgumentException ex)
+            {
+                WriteLine(ex.Message);
+            }
         }
     }
 }
