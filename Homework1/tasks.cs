@@ -10,7 +10,6 @@ namespace Homework1
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-
         static void NullDec(ref int number)
         {
             if ((Abs(number) <= 99) || (Abs(number) >= 1000))
@@ -45,6 +44,25 @@ namespace Homework1
 
         }
 
+        /// <summary>
+        /// Функция, которая считает кол-во корней квадратного уравнения.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        static int CountRoots(int a, int b, int c)
+        {
+            var D = Pow(b, 2) - 4 * a * c;
+            if ((D < 0) || (a == 0))
+                throw new ArgumentException("Нет корней квадратного уравнения");
+            if (D == 0)
+                return 1;
+            return 2;
+        }
+
+        
 
 
         static void Main()
@@ -76,6 +94,25 @@ namespace Homework1
             {
                 WriteLine(ex.Message);
             }
+            WriteLine();
+
+            Write("Введите число a: ");
+            var a = int.Parse(ReadLine());
+            Write("Введите число b: ");
+            var b = int.Parse(ReadLine());
+            Write("Введите число c: ");
+            var c = int.Parse(ReadLine());
+            try
+            {
+                WriteLine($"Количество корней квадратного уравнения: {CountRoots(a, b, c)}");
+            }
+            catch (ArgumentException ex)
+            {
+                WriteLine(ex.Message);
+            }
+            WriteLine();
+
+            
         }
     }
 }
