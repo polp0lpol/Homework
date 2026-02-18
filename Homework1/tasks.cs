@@ -75,7 +75,22 @@ namespace Homework1
             return y;
         }
 
-
+        static double MultAB(int A, int B)
+        {
+            if (A > B)
+                (A, B) = (B, A);
+            int firstEven = A;
+            double res = 1;
+            if (firstEven % 2 != 0) 
+            {
+                firstEven = A + 1;
+            }
+            if (A == B)
+                res = 0;
+            for (int i = firstEven; i <= B; i += 2)
+                res *= i;
+            return res;
+        }
 
 
         static void Main()
@@ -125,14 +140,19 @@ namespace Homework1
             }
             WriteLine();
 
-
-
-
             Write("Введите число x1: ");
             var x1 = double.Parse(ReadLine());
             Write("Введите число y1: ");
             var y1 = double.Parse(ReadLine());
             WriteLine($"Минимальное число: {MyMin(x1, y1)}");
+            WriteLine();
+
+            Write("Введите число A: ");
+            var A = int.Parse(ReadLine());
+            Write("Введите число B: ");
+            var B = int.Parse(ReadLine());
+            WriteLine($"Произведение чётных чисел от {A} до {B} = {MultAB(A, B)}");
+            WriteLine();
 
         }
     }
