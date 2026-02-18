@@ -62,7 +62,20 @@ namespace Homework1
             return 2;
         }
 
-        
+        /// <summary>
+        /// Функция, которая возвращает минимальное вещественное число. 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        static double MyMin(double x, double y)
+        {
+            if (x < y)
+                return x;
+            return y;
+        }
+
+
 
 
         static void Main()
@@ -112,7 +125,15 @@ namespace Homework1
             }
             WriteLine();
 
-            
+
+
+
+            Write("Введите число x1: ");
+            var x1 = double.Parse(ReadLine());
+            Write("Введите число y1: ");
+            var y1 = double.Parse(ReadLine());
+            WriteLine($"Минимальное число: {MyMin(x1, y1)}");
+
         }
     }
 }
