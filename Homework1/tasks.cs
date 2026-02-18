@@ -1,0 +1,50 @@
+﻿using System.Globalization;
+using static System.Console;
+using static System.Math;
+namespace Homework1
+{
+    internal class tasks
+    {
+        /// <summary>
+        /// Фунция, которая обнуляет разряд десятков.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+
+        static void NullDec(ref int number)
+        {
+            if ((Abs(number) <= 99) || (Abs(number) >= 1000))
+                throw new ArgumentException("Число должно быть трехзначным!");
+
+            var (pow10, res) = (1, 0);
+            while (Abs(number) > 0)
+            {
+                var digit = number % 10;
+                if (pow10 == 10)
+                    digit = 0;
+                res += digit * pow10;
+                pow10 *= 10;
+                number /= 10;
+            }
+            number = res;
+        }
+
+
+        static void Main()
+        {
+            Write("Введите трехзначное число: ");
+            var number = int.Parse(ReadLine());
+            try
+            {
+                NullDec(ref number);
+                Write($"Число с обнуленным разрядом десятков: {number}");
+
+            }
+            catch (ArgumentException ex)
+            {
+                WriteLine(ex.Message);
+            }
+            WriteLine();
+        }
+    }
+}
