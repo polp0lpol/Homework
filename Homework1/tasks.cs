@@ -124,7 +124,7 @@ namespace Homework1
             return (count1, count2);
         }
 
-        
+
         enum Seasons
         {
             Winter, Spring, Summer, Autumn
@@ -149,6 +149,18 @@ namespace Homework1
             };
         }
 
+        static void RandSeason(int n)
+        {
+            if (n <= 0)
+                throw new ArgumentException("Количество строк должно быть положительным числом!");
+            var rnd = new Random();
+            for (int i = 0; i < n; i++)
+            {
+                int month = rnd.Next(1, 13);
+                Seasons season = TimeOfYear(month);
+                WriteLine($"Месяц №{month}, его сезон: {season}");
+            }
+        }
 
         static void Main()
         {
@@ -250,9 +262,16 @@ namespace Homework1
             }
             WriteLine();
 
-
-
-
+            /// Задание №8
+            WriteLine("Задание №8: ");
+            try
+            {
+                RandSeason(n);
+            }
+            catch (AggregateException ex)
+            {
+                WriteLine(ex.Message);
+            }
         }
     }
 }
