@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Numerics;
 using static System.Console;
 using static System.Math;
 namespace Homework1
@@ -87,20 +88,48 @@ namespace Homework1
                 (A, B) = (B, A);
             int firstEven = A;
             double res = 1;
-            if (firstEven % 2 != 0) 
+            if (firstEven % 2 != 0)
             {
                 firstEven = A + 1;
             }
             if (A == B)
-                res = 0;
+                return 0;
             for (int i = firstEven; i <= B; i += 2)
                 res *= i;
             return res;
         }
 
+        /// <summary>
+        /// Функция, которая находит числа последовательности меньше K а также, делящихся на него нацело.
+        /// </summary>
+        /// <param name="K"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        static (int, int) CountNumberLessAndDiv(int K)
+        {
+            var (count1, count2) = (0, 0);
+            if (K == 0)
+                throw new ArgumentException("K не должно быть равно 0!");
+            int x = int.Parse(ReadLine());
+            while (x != 0)
+            {
+                if (x < K)
+                    count1++;
+                if ((x % K) == 0)
+                    count2++;
+                else if (x == 0)
+                    break;
+                x = int.Parse(ReadLine());
+            }
+            return (count1, count2);
+        }
+
+
 
         static void Main()
         {
+            /// Задание №1
+            WriteLine("Задание №1: ");
             Write("Введите трехзначное число: ");
             var number = int.Parse(ReadLine());
             try
@@ -115,6 +144,8 @@ namespace Homework1
             }
             WriteLine();
 
+            /// Задание №2
+            WriteLine("Задание №2: ");
             Write("Введите координату x(1-8): ");
             var x = int.Parse(ReadLine());
             Write("Введите координату y(1-8): ");
@@ -130,6 +161,8 @@ namespace Homework1
             }
             WriteLine();
 
+            /// Задание №3
+            WriteLine("Задание №3: ");
             Write("Введите число a: ");
             var a = int.Parse(ReadLine());
             Write("Введите число b: ");
@@ -146,6 +179,8 @@ namespace Homework1
             }
             WriteLine();
 
+            /// Задание №4
+            WriteLine("Задание №4: ");
             Write("Введите число x1: ");
             var x1 = double.Parse(ReadLine());
             Write("Введите число y1: ");
@@ -153,12 +188,32 @@ namespace Homework1
             WriteLine($"Минимальное число: {MyMin(x1, y1)}");
             WriteLine();
 
+            /// Задание №5
+            WriteLine("Задание №5: ");
             Write("Введите число A: ");
             var A = int.Parse(ReadLine());
             Write("Введите число B: ");
             var B = int.Parse(ReadLine());
             WriteLine($"Произведение чётных чисел от {A} до {B} = {MultAB(A, B)}");
             WriteLine();
+
+            /// Задание №6
+            WriteLine("Задание №6: ");
+            WriteLine("Введите число K: ");
+            var K = int.Parse(ReadLine());
+            WriteLine("Введите последовательность чисел оканчивающуюся 0: ");
+            try
+            {
+                WriteLine($"Количество чисел меньших K a также делящихся на него: {CountNumberLessAndDiv(K)}");
+            }
+            catch (ArgumentException ex)
+            {
+                WriteLine(ex.Message);
+            }
+            WriteLine();
+
+
+
 
         }
     }
