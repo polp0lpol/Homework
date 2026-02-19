@@ -124,6 +124,30 @@ namespace Homework1
             return (count1, count2);
         }
 
+        
+        enum Seasons
+        {
+            Winter, Spring, Summer, Autumn
+        }
+
+        /// <summary>
+        /// Метод, который по номеру месяца возвращаяет время года.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        static Seasons TimeOfYear(int n)
+        {
+            if ((n >= 13) || (n <= 0))
+                throw new ArgumentException("Кол-во месяцев в году 1-12!");
+            return n switch
+            {
+                12 or 1 or 2 => Seasons.Winter,
+                3 or 4 or 5 => Seasons.Spring,
+                6 or 7 or 8 => Seasons.Summer,
+                9 or 10 or 11 => Seasons.Autumn
+            };
+        }
 
 
         static void Main()
@@ -207,6 +231,20 @@ namespace Homework1
                 WriteLine($"Количество чисел меньших K a также делящихся на него: {CountNumberLessAndDiv(K)}");
             }
             catch (ArgumentException ex)
+            {
+                WriteLine(ex.Message);
+            }
+            WriteLine();
+
+            /// Задание №7
+            WriteLine("Задание №7: ");
+            Write("Введите номер месяца: ");
+            int n = int.Parse(ReadLine());
+            try
+            {
+                WriteLine($"Время года: {TimeOfYear(n)}");
+            }
+            catch (AggregateException ex)
             {
                 WriteLine(ex.Message);
             }
