@@ -149,6 +149,11 @@ namespace Homework1
             };
         }
 
+        /// <summary>
+        /// Метод, выводящий на консоль N строк.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <exception cref="ArgumentException"></exception>
         static void RandSeason(int n)
         {
             if (n <= 0)
